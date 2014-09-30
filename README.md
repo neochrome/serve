@@ -1,25 +1,33 @@
-Installation
-------------
+# Serve
+A simple HTTP server that runs from the current directory.
 
-    npm install . -g
+## Installation
 
-Usage
------
+```
+$ npm install --global neochrome/serve
+```
 
-    serve
+## Usage
+Serving files from the current directory on port 8080 (default):
 
-This will start serving the contents of the current directory on port 8080 by default.
+```
+$ serve
+```
 
-Config file
------------
-Put a file named .serve.json in the root directory you wnat to serve from.
-Example .serve.json
+The serving port may be specified either as an argument or an environment
+variable:
 
-    {
-      "restrictedFiles": [
-        "cache.manifest",
-        "sensitive.info"
-      ],
-      "port": 8080    
-    }
+```
+$ serve 1234
+$ PORT=1234 serve
+```
 
+### Restricting access to certain files
+By adding shell patterns to a file called `.serveignore` in the directory `serve`
+is executed from, one may restrict acces to files matching any of those patterns.
+
+```
+cache.manifest
+*.sensitive.info
+**/*.html
+```
