@@ -15,7 +15,9 @@
 	"scripts": {
 		"start": "node lib/serve.js"
 	},
-	"bin": "bin/serve",
+	"bin": {
+		"serve": "lib/serve.js"
+	},
 	"engines": {
 		"node": ">=0.10"
 	},
