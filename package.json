@@ -1,30 +1,32 @@
 {
-	"author": "Johan Stenqvist",
-	"name": "serve",
-	"description": "A simple HTTP serve-from-anywhere",
-	"keywords": [
-		"http",
-		"server",
-		"simple"
-	],
-	"version": "0.1.0",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/neochrome/serve"
-	},
-	"scripts": {
-		"start": "node lib/serve.js"
-	},
-	"bin": {
-		"serve": "lib/serve.js"
-	},
-	"engines": {
-		"node": ">=0.10"
-	},
-	"dependencies": {
-		"connect": "~3.2.0",
-		"serve-static": "~1.6.3",
-		"minimatch": "~1.0.0"
-	},
-	"preferGlobal": true
+  "author": "Johan Stenqvist",
+  "name": "serve",
+  "description": "A simple HTTP serve-from-anywhere",
+  "keywords": [
+    "http",
+    "server",
+    "simple"
+  ],
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neochrome/serve"
+  },
+  "scripts": {
+    "start": "node program.js"
+  },
+  "bin": {
+    "serve": "program.js"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "dependencies": {
+    "commander": "^2.3.0",
+    "connect": "~3.2.0",
+    "http-route-proxy": "^0.1.1",
+    "minimatch": "~1.0.0",
+    "serve-static": "~1.6.3"
+  },
+  "preferGlobal": true
 }

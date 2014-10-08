@@ -14,12 +14,19 @@ Serving files from the current directory on port 8080 (default):
 $ serve
 ```
 
-The serving port may be specified either as an argument or an environment
-variable:
+Additional options:
 
 ```
-$ serve 1234
-$ PORT=1234 serve
+    -h, --help               output usage information
+    -V, --version            output the version number
+    -l, --listen [PORT]      Listen on PORT, defaults to [8080].
+    -p, --proxy [PATH|DEST]  Proxy requests matching PATH to DEST. Multiple proxies supported.
+```
+
+Example with proxy:
+
+```
+$ server -p '/api|http://localhost:9999'
 ```
 
 ### Restricting access to certain files
