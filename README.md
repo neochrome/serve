@@ -26,7 +26,7 @@ Additional options:
 Example with proxy:
 
 ```
-$ server -p '/api|http://localhost:9999'
+$ serve -p '/api|http://localhost:9999/api'
 ```
 
 ### Restricting access to certain files
