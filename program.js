@@ -1,4 +1,4 @@
-#!/bin/env node
+#!/usr/bin/env
 var connect     = require('connect');
 var serveStatic = require('serve-static');
 var httpProxy   = require('http-proxy');
