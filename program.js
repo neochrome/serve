@@ -17,9 +17,23 @@ program
 	.option('-p, --proxy [PATH|DEST]', 'Proxy requests matching PATH to DEST. Multiple proxies supported.', function (value, memo) { memo.push(value); return memo; }, [])
 	.parse(process.argv);
 
+var requestLog = function (req, res, next) {
+	console.log('%s %s', req.method, req.url);
+	next();
+};
+
+var errorLog = function (err, req, res, next) {
+	console.error('ERROR: %s', err.toString());
+};
 
 var proxy = function (target) {
 	var server = httpProxy.createProxyServer({ target: target });
+	server.on('error', function (err, req, res) {
+		res.writeHead(502, {
+			'Content-Type': 'text/plain'
+		});
+		res.end('Could not proxy request:\n' + err.toString());
+	});
 	return function (req, res) {
 		console.log('%s %s -> %s', req.method, req.url, target);
 		server.web(req, res);
@@ -33,12 +47,10 @@ program.proxy.forEach(function (proxyOption) {
 	if (config.length !== 2) return;
 	app.use(config[0].trim(), proxy(config[1].trim()));
 });
-app.use(function (req, res, next) {
-	console.log('%s %s', req.method, req.url);
-	next();
-});
+app.use(requestLog);
 app.use(restrict(patterns));
 app.use(serveStatic(process.cwd()));
+app.use(errorLog);
 app.listen(program.listen, function (err) {
 	if (err) {
 		console.error('ERROR:\n%s', err);
